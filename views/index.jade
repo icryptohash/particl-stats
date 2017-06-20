@@ -1,0 +1,49 @@
+extends layout
+
+block content
+	h1
+		a(href="http://particl.io") particl.io
+		| &nbsp;kickoff stats
+
+	h2 Donations appreciated for the effort :)
+	h4 SDC: SVfexgdJBuz6EVtXzjwfwEJmHjG1GjkuCm
+	h4 BTC: 1AnUDiyaL1eURyKEW43rdaqqtBYjLzvgDB
+
+	hr
+
+	h5 Milestones
+	svg#mmixed(width="960" height="500")
+	- latestSnapShot = snapshots[snapshots.length-1];
+	div
+		| Milestone1: $#{latestSnapShot.m1.total.toLocaleString('en-US')} of $#{latestSnapShot.m1.goal.toLocaleString('en-US')}
+		| &nbsp;...&nbsp;
+		| Milestone2: $#{latestSnapShot.m2.funded.toLocaleString('en-US')} of $#{latestSnapShot.m2.goal.toLocaleString('en-US')}
+		| &nbsp;...&nbsp;
+		| Milestone3: $#{latestSnapShot.m3.funded.toLocaleString('en-US')} of $#{latestSnapShot.m3.goal.toLocaleString('en-US')}
+	//-svg#m1_funded(width="960" height="500")
+	//-svg#m2_total(width="960" height="500")
+	//-svg#m3_total(width="960" height="500")
+
+	h5 SDC
+	svg#sdcfunding(width="960" height="500")
+	div
+		| SDC funded: #{latestSnapShot.sdcConverted.funded}%
+		| &nbsp;...&nbsp;
+		| #{latestSnapShot.sdcConverted.raised.toLocaleString('en-US')} SDC
+		| &nbsp; of Total #{(latestSnapShot.sdcConverted.goal).toLocaleString('en-US')} SDC
+	h5 PART
+	svg#staking(width="960" height="500")
+	div
+		| Participants: #{latestSnapShot.stats.participants}
+		| &nbsp;...&nbsp;
+		| Bonus: #{latestSnapShot.stats.bonus}
+		| &nbsp;...&nbsp;
+		| Swapped: #{latestSnapShot.stats.swapped}
+	//-svg#stats_participants(width="960" height="500")
+	//-svg#stats_bonus(width="960" height="500")
+	//-svg#stats_swapped(width="960" height="500")
+
+
+	script.
+		data = !{JSON.stringify(snapshots)};
+	script(src='javascripts/chart.js')

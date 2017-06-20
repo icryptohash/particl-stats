@@ -1,0 +1,14 @@
+doctype html
+html
+	head
+		title iCryptoHash
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(src="https://d3js.org/d3.v4.min.js")
+		//-script(src="//d3js.org/d3.v3.min.js")
+		script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js")
+		script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js")
+	body
+		block content
+		div(style='padding-top:50px'): sub Views: #{viewCount}
+		div: sub Last Update:&nbsp;
+			span#updated
