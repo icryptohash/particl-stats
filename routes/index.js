@@ -16,12 +16,16 @@ router.get('/', async (req, res, next)=> {
 			ip: req.connection.remoteAddress
 		});
 		let viewCount = await viewsDbCountSync({route: '/'});
-		snapshotDb.find({$not: {m1: null}}, {
-			_id:         0,
-			_updated_at: 0,
-			arr:         0,
-			raw:         0,
-		}).sort({createdAt: 1}).exec((err, snapshots)=> {
+		snapshotDb.find(
+			{   $not: {m1: null},
+				createdAt: {$lt: new Date('04/18/2017')}}, // Last time of change in stats
+			{
+				_id:         0,
+				_updated_at: 0,
+				arr:         0,
+				raw:         0,
+			}
+		).sort({createdAt: 1}).exec((err, snapshots)=> {
 			if (err) next(err);
 			res.render('index', {
 				title:     'Express',
